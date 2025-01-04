@@ -4,7 +4,7 @@ import path from 'path';
 const comandosPath = path.join(process.cwd(), 'Data', 'Comandos.json');
 
 class ComandosController {
-    // Carregar comandos uma única vez para otimizar
+
     loadComandos() {
         try {
             if (fs.existsSync(comandosPath)) {
@@ -67,15 +67,16 @@ class ComandosController {
         try {
             const comandos = this.loadComandos();
             
-            // Filtra os comandos onde o nome contém o valor passado no parâmetro 'name'
+            // Filtra os comandos que o nome contém o valor passado no parâmetro 'name'
             let comandosFiltrados = comandos.filter(comando => 
                 comando.data.name.toLowerCase().includes(name.toLowerCase()) // Ignora maiúsculas/minúsculas
             );
     
             if (comandosFiltrados.length === 0) {
 
+                //Se não encontrar o comando pel nome, busca pela descrição
                 comandosFiltrados = comandos.filter(comando => 
-                    comando.data.description.toLowerCase().includes(name.toLowerCase()) // Ignora maiúsculas/minúsculas
+                    comando.data.description.toLowerCase().includes(name.toLowerCase())
                 );
                 
                 if (comandosFiltrados.length === 0) {
@@ -89,7 +90,7 @@ class ComandosController {
                 comandos: comandosFiltrados
             });
         } catch (error) {
-            console.error("Erro ao buscar comandos por nome:", error);
+            console.error(`Erro ao buscar comandos por nome: ${error}`);
             res.status(500).json({ message: "Erro ao buscar comandos." });
         }
     };
@@ -97,24 +98,17 @@ class ComandosController {
 
     addComandos = (req, res) => {
         const { data, execute, execute2, execute3 } = req.body;
-        const { page = 1, limit = 10 } = req.query;
-
-        // Converta para números
-        const currentPage = Number(page);
-        const limitPerPage = Number(limit);
     
         // Verificar campos obrigatórios
         if (!data || !data.name || !data.description || !execute) {
-            return res.status(400).json({
-                error: "Campos obrigatórios: data (name, description), execute."
-            });
+            return res.status(400).json({ message: "Campos obrigatórios: data (name, description), execute." });
         }
     
         const comandos = this.loadComandos();
     
         // Criar o novo comando
         const novoComando = {
-            id: comandos.length ? comandos[comandos.length - 1].id + 1 : 1, // Gerar um ID único
+            id: comandos.length ? comandos[comandos.length - 1].id + 1 : 1, // Gerar um ID sequêncial
             data,
             execute
         };
@@ -166,10 +160,8 @@ class ComandosController {
     
         // Salvando no arquivo
         fs.writeFileSync(comandosPath, JSON.stringify(comandos, null, 2));
-        res.json(comandos[comandoIndex]);
+        res.status(200).json(comandos[comandoIndex]);
         console.log(`Comando ${data.name} foi alterado.`)
-        // Um detalhe muito importante neste código: Devido ao comandos[comandoIndex] possuir apenas os dados que foram alterados,
-        // nos casos de não haver nenhuma alteração no execute2 ou 3, eles não serão nem excluidos nem alterados.
     };
     
 
@@ -185,8 +177,8 @@ class ComandosController {
 
         const comandoRemovido = comandos.splice(comandoIndex, 1);
         fs.writeFileSync(comandosPath, JSON.stringify(comandos, null, 2));
-        res.json(comandoRemovido);
-        console.log(`Comando com o ID ${id} foi deletado.`)
+        res.stats(200).json(comandoRemovido);
+        console.log(`Comando ${comandos[comandoIndex].data.name} foi deletado.`)
     }
 }
 

@@ -1,7 +1,6 @@
 import { REST, Routes } from "discord.js";
 import fs from 'fs';
 import path from 'path';
-
 import { config } from 'dotenv';
 config();
 
@@ -9,12 +8,10 @@ const comandosPath = path.join(process.cwd(), 'Data', 'Comandos.json');
 let comandosJson = [];
 
 try {
-    console.log(`Acessando arquivo: ${comandosPath}`);
     const fileContent = fs.readFileSync(comandosPath, 'utf-8');
     comandosJson = JSON.parse(fileContent);
-    console.log('Comandos carregados com sucesso:', comandosJson);
 } catch (error) {
-    console.error('Erro ao carregar o arquivo JSON:', error.message);
+    console.error(`Erro ao carregar o arquivo JSON: ${error.message}`);
 }
 
 class AdministratorController {
@@ -42,8 +39,6 @@ class AdministratorController {
             return res.status(500).json({ message: `Erro ao sincronizar ${error}` });
         }
     };
-
-    
 }
 
 export default AdministratorController;
