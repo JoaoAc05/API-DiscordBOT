@@ -1,20 +1,21 @@
 import { REST, Routes } from "discord.js";
 import fs from 'fs';
 import path from 'path';
+
+import { config } from 'dotenv';
+config();
+
 const comandosPath = path.join(process.cwd(), 'Data', 'Comandos.json');
-// const comandosJson = JSON.parse(fs.readFileSync('../../Data/Comandos.json', 'utf-8'));
+let comandosJson = [];
 
 try {
     console.log(`Acessando arquivo: ${comandosPath}`);
     const fileContent = fs.readFileSync(comandosPath, 'utf-8');
-    const comandosJson = JSON.parse(fileContent);
+    comandosJson = JSON.parse(fileContent);
     console.log('Comandos carregados com sucesso:', comandosJson);
 } catch (error) {
     console.error('Erro ao carregar o arquivo JSON:', error.message);
 }
-
-import { config } from 'dotenv';
-config();
 
 class AdministratorController {
     
