@@ -1,7 +1,7 @@
 import { REST, Routes } from "discord.js";
 import fs from 'fs';
 import path from 'path';
-const comandosPath = path.join(process.cwd(), 'Data', 'Comandos.json');
+const comandosPath = path.join(process.cwd(), 'Comandos.json');
 // const comandosJson = JSON.parse(fs.readFileSync('../../Data/Comandos.json', 'utf-8'));
 
 try {
