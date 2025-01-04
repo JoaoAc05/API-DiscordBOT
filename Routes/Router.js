@@ -12,13 +12,6 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/teste', (req, res) => {
-    res.json({
-        "statuscode": 200,
-        "sucesso": "Rota teste"
-    });
-});
-
 router.use("/comandos", ComandosRouter)
 router.use("/admin", AdministratorRouter)
 export default router;
