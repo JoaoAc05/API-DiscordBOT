@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const comandosPath = path.join(process.cwd(), "Data", "Comandos.json");
+const comandosPath = path.join(process.cwd(), 'Data', 'Comandos.json');
 console.log(`Acessando arquivo: ${comandosPath}`);
 
 class ComandosController {

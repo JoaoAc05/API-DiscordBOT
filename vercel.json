@@ -10,7 +10,7 @@
       "src": "(.*)", "dest": "src/app.js"
     }
   ],
-  "includeFiles": {
+  "staticFiles": {
     "Data/Comandos.json": true
   }
 }
