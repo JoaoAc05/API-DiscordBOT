@@ -9,5 +9,8 @@
     {
       "src": "(.*)", "dest": "src/app.js"
     }
-  ]
+  ],
+  "includeFiles": {
+    "Data/Comandos.json": true
+  }
 }

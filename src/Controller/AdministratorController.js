@@ -1,6 +1,18 @@
 import { REST, Routes } from "discord.js";
 import fs from 'fs';
-const comandosJson = JSON.parse(fs.readFileSync('../../Data/Comandos.json', 'utf-8'));
+import path from 'path';
+const comandosPath = path.join(process.cwd(), 'Data', 'Comandos.json');
+// const comandosJson = JSON.parse(fs.readFileSync('../../Data/Comandos.json', 'utf-8'));
+
+try {
+    console.log(`Acessando arquivo: ${comandosPath}`);
+    const fileContent = fs.readFileSync(comandosPath, 'utf-8');
+    const comandosJson = JSON.parse(fileContent);
+    console.log('Comandos carregados com sucesso:', comandosJson);
+} catch (error) {
+    console.error('Erro ao carregar o arquivo JSON:', error.message);
+}
+
 import { config } from 'dotenv';
 config();
 
