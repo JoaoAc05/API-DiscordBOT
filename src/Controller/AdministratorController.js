@@ -1,5 +1,6 @@
 import { REST, Routes } from "discord.js";
-const comandosJson = JSON.parse(fs.readFileSync('../../../Data/Comandos.json', 'utf-8'));
+import fs from 'fs';
+const comandosJson = JSON.parse(fs.readFileSync('../../Data/Comandos.json', 'utf-8'));
 import { config } from 'dotenv';
 config();
 
