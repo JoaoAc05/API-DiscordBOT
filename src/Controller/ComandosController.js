@@ -27,7 +27,6 @@ class ComandosController {
     // }
 
     getAll = (req, res) => {
-        console.log("CAIU NA ROTA GETALL")
         try {
             const comandos = this.loadComandos();
     
@@ -66,8 +65,7 @@ class ComandosController {
 
     getName = (req, res) => {
         const name = req.query.name;
-        console.log("CAIU NA ROTA GET NAME")
-    
+
         if (!name) {
             return res.status(400).json({ message: "O parâmetro 'name' é obrigatório." });
         }
@@ -104,7 +102,6 @@ class ComandosController {
     
 
     addComandos = (req, res) => {
-        console.log("CAIU NA ROTA ADD COMANDO")
         const { data, execute, execute2, execute3 } = req.body;
         const { page = 1, limit = 10 } = req.query;
 
@@ -144,7 +141,6 @@ class ComandosController {
     };
 
     alterComandos = (req, res) => {
-        console.log("CAIU NA ROTA ALTER COMANDO")
         const id = parseInt(req.params.id);
         const { data, execute, execute2, execute3 } = req.body;
         let novosDados = { data, execute }; // Inicializa com os dados obrigatórios.
@@ -184,7 +180,6 @@ class ComandosController {
     
 
     deleteComandos = (req, res) => {
-        console.log("CAIU NA ROTA DELETE COMANDO")
         const id = parseInt(req.params.id);
 
         const comandos = this.loadComandos();
