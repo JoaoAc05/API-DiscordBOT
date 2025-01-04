@@ -1,22 +1,32 @@
-import { exec } from "child_process";
-import { Console } from "console";
+import { REST, Routes } from "discord.js";
+import comandosJson from "../../Data/Comandos.json" assert { type: "json" };
+import { config } from 'dotenv';
+config();
 
 class AdministratorController {
-    updateComandos(req, res){
-        console.log("ROTA SINCRONIZAR COMANDOS")
-        exec("node UpdateComandos.js", (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Erro ao executar o script: ${error.message}`);
-                return res.status(500).json({ error: "Erro ao sincronizar comandos." });
-            }
-            if (stderr) {
-                console.error(`Erro no script: ${stderr}`);
-                return res.status(500).json({ error: "Erro no script de sincronização." });
-            }
     
-            console.log(`Resultado: ${stdout}`);
+    async updateComandos(req, res){
+        const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
+        try {
+            console.log(`Resetando ${comandosJson.length} comandos.`);
+    
+            // Mapear os comandos JSON para o formato esperado pelo Discord.
+            const commands = comandosJson.map(comando => ({
+                name: comando.data.name,
+                description: comando.data.description,
+            }));
+    
+            // Enviar os comandos para o Discord
+            await rest.put(
+                Routes.applicationCommands(process.env.CLIENT_ID),
+                { body: commands }
+            );
+            
             return res.status(200).json({ message: "Sincronização concluída com sucesso!" });
-        });
+        } catch (error) {
+            console.error(`Erro ao fazer a sincronização dos comandos: ${error}`);
+            return res.status(500).json({ message: `Erro ao sincronizar ${error}` });
+        }
     };
 
     

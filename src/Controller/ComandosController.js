@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const comandosPath = path.join(process.cwd(), "Comandos.json");
+const comandosPath = path.join(process.cwd(), "Data", "Comandos.json");
 console.log(`Acessando arquivo: ${comandosPath}`);
 
 class ComandosController {
@@ -20,11 +20,6 @@ class ComandosController {
             return [];
         }
     }
-
-    // getAll = (req, res) => {
-    //     const comandos = this.loadComandos();
-    //     res.json(comandos);
-    // }
 
     getAll = (req, res) => {
         try {
@@ -56,7 +51,7 @@ class ComandosController {
                 comandos: comandos.slice(startIndex, endIndex)
             };
     
-            res.json(response);
+            res.status(200).json(response);
         } catch (error) {
             console.error("Erro ao obter comandos:", error);
             res.status(500).json({ message: "Erro ao buscar os comandos." });

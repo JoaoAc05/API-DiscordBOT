@@ -11,7 +11,7 @@ const client = new Client({
 import { config } from "dotenv";
 config();
 import fs from 'fs';
-const comandosJson = JSON.parse(fs.readFileSync('./Comandos.json', 'utf8'));
+const comandosJson = JSON.parse(fs.readFileSync('./Data/Comandos.json', 'utf8'));
 import app from "./src/app.js";
 
 const port = normalizaPort(process.env.PORT || '3000');

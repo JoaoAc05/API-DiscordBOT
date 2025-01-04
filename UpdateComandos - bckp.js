@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 config();
-import comandosJson from './Comandos.json' assert { type: 'json' };
+import comandosJson from './Data/Comandos.json' assert { type: 'json' };
 import { REST, Routes } from 'discord.js';
 
 // Instância REST
