@@ -9,8 +9,5 @@
     {
       "src": "(.*)", "dest": "src/app.js"
     }
-  ],
-  "staticFiles": {
-    "Data/Comandos.json": true
-  }
+  ]
 }
