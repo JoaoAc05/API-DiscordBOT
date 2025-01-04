@@ -4,7 +4,7 @@ import AdministratorController from "../src/Controller/AdministratorController.j
 const AdministratorRouter = express.Router();
 const administratorController = new AdministratorController();
 
-AdministratorRouter.post("/update", administratorController.updateComandos);
+AdministratorRouter.put("/update", administratorController.updateComandos);
 
 
 export default AdministratorRouter;

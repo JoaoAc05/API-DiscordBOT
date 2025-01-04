@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 
 const comandosPath = path.join(process.cwd(), 'Data', 'Comandos.json');
-console.log(`Acessando arquivo: ${comandosPath}`);
 
 class ComandosController {
     // Carregar comandos uma única vez para otimizar
