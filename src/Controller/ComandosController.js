@@ -58,7 +58,7 @@ class ComandosController {
     };
 
     getName = (req, res) => {
-        const name = req.params.name;
+        const name = req.query.name;
 
         if (!name) {
             return res.status(400).json({ message: "O parâmetro 'name' é obrigatório." });
