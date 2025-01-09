@@ -82,6 +82,7 @@ client.on("interactionCreate", async interaction => {
     try {
         // Executar o comando
         await command.execute(interaction);
+        console.log("Guild_ID: "+interaction.commandGuildId+ ", ID: "+ interaction.commandId)
     } catch (error) {
         console.error(error);
         await interaction.reply({
