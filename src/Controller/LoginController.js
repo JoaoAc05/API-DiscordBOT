@@ -4,20 +4,25 @@ config();
 class LoginController {
     
     async login(req, res){
-        const { username, password} = req.body;
+        try{
+            const { username, password} = req.body;
 
-        if(!login || !password){
-            return res.status(400).json({ message: "Usuário e senha são obrigatórios." });
+            if(!login || !password){
+                return res.status(400).json({ message: "Usuário e senha são obrigatórios." });
+            }
+            const login = username.trim().toUpperCase();
+            const senha = password.trim()
+    
+            if(login !== process.env.USERNAME || senha !== process.env.PASSWORD){
+                return res.status(401).json({message: "Usuário ou senha inválidos."})
+            }
+    
+            res.status(200).json({message: "Login realizado com sucesso."})
         }
-
-        const login = username.trim().toUpperCase();
-        const senha = password.trim()
-
-        if(login !== process.env.USERNAME || senha !== process.env.PASSWORD){
-            return res.status(401).json({message: "Usuário ou senha inválidos."})
+        catch(e){
+            console.error(`Erro no login:  ${error}`);
+            return res.status(500).json({ message: "Erro interno do servidor." });
         }
-        
-        res.status(200).json({message: "Login realizado com sucesso."})
         
     };
 }
