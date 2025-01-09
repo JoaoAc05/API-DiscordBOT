@@ -20,7 +20,7 @@ class LoginController {
     
             res.status(200).json({message: "Login realizado com sucesso."})
         }
-        catch(e){
+        catch(error){
             console.error(`Erro no login:  ${error}`);
             return res.status(500).json({ message: "Erro interno do servidor." });
         }
