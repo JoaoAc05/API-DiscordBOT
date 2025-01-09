@@ -5,6 +5,7 @@ class LoginController {
     
     async login(req, res){
         try{
+            console.log("Iniciando validação.")
             const { username, password} = req.body;
 
             if(!login || !password){
