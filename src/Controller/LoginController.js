@@ -8,7 +8,7 @@ class LoginController {
             console.log("Iniciando validação.")
             const { username, password} = req.body;
 
-            if(!login || !password){
+            if(!username || !password){
                 return res.status(400).json({ message: "Usuário e senha são obrigatórios." });
             }
             const login = username.trim().toUpperCase();
