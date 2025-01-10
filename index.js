@@ -34,7 +34,21 @@ client.once("ready", () => {
     console.log(`RuralHub Bot foi iniciado em ${client.guilds.cache.size} servidores.`); // Exibir informações de servidores
     client.user.setActivity(`Conheça a https://ruralhub.com.br/`);
 })
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN).catch(error => {
+    console.error("Erro ao autentiicar o bot: ", error)
+});
+
+client.on("error", (error) => {
+    console.error("Erro no cliente Discord:", error);
+});
+
+process.on("uncaughtException", (error) => {
+    console.error("Exceção não tratada:", error);
+});
+
+process.on("unhandledRejection", (reason) => {
+    console.error("Rejeição não tratada:", reason);
+});
 
 // Configurar os comandos do bot
 client.commands = new Map(); //Criando uma nova colenção que ira armazenar os comandos finais
