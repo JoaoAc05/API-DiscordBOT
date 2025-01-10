@@ -100,7 +100,7 @@ client.on("messageCreate", async message => {
     const comando = args.shift().toLowerCase();
 
     if(comando === "avatar") { //Enviar a imagem do avatar
-        message.channel.send(`https://cdn.discordapp.com/avatars/565974725797609514/${message.author.avatar}.webp?size=256`);
+        message.channel.send(`https://cdn.discordapp.com/avatars/565974725797609514/${message.author.avatar}.webp?size=128`);
     }
 
     if(comando === "ping") {
@@ -120,5 +120,4 @@ app.listen(port, function () {
     console.log(`Servidor REST API rodando na porta ${port}.`);
 });
 
-// Pra executar só usar o comando: node server.js ou node --no-warnings index.js
-// os warnings se referen ao assertation na importação do json com os comandos. A extrutura dele pode ser inutilizada ou alterada nas próximas versoes do node
+// Pra executar só usar o comando: node index.js
