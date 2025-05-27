@@ -38,17 +38,16 @@ client.login(process.env.TOKEN).catch(error => {
     console.error("Erro ao autentiicar o bot: ", error)
 });
 
-client.on("error", (error) => {
-    console.error("Erro no cliente Discord:", error);
-});
-
-process.on("uncaughtException", (error) => {
-    console.error("Exceção não tratada:", error);
-});
-
-process.on("unhandledRejection", (reason) => {
-    console.error("Rejeição não tratada:", reason);
-});
+// Debug
+    client.on("error", (error) => {
+        console.error("Erro no cliente Discord:", error);
+    });
+    process.on("uncaughtException", (error) => {
+        console.error("Exceção não tratada:", error);
+    });
+    process.on("unhandledRejection", (reason) => {
+        console.error("Rejeição não tratada:", reason);
+    });
 
 // Configurar os comandos do bot
 client.commands = new Map(); //Criando uma nova colenção que ira armazenar os comandos finais
@@ -132,6 +131,8 @@ client.on("messageCreate", async message => {
 
 app.listen(port, function () {
     console.log(`Servidor REST API rodando na porta ${port}.`);
-});
+}).on("error", (err) => {
+    console.error("Erro ao iniciar o servidor:", err.message);
+});;
 
 // Pra executar só usar o comando: node index.js
