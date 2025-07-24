@@ -7,10 +7,12 @@ const router = express.Router();
 
 //rota default
 router.get('/', (req, res) => {
-    res.json({
-        "statuscode": 200,
+    res.status(200).json({
         "sucesso": "Rota default - RuralHub Bot"
     });
+});
+router.get("/health", (req, res) => {
+  res.status(200).send("OK");
 });
 
 router.use("/comandos", ComandosRouter)

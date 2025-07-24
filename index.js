@@ -34,9 +34,13 @@ client.once("ready", () => {
     console.log(`RuralHub Bot foi iniciado em ${client.guilds.cache.size} servidores.`); // Exibir informações de servidores
     client.user.setActivity(`Conheça a https://ruralhub.com.br/`);
 })
-client.login(process.env.TOKEN).catch(error => {
-    console.error("Erro ao autentiicar o bot: ", error)
-});
+if(!process.env.TOKEN) {
+    console.error("Token indisponível para autenticar o BOT") // Verificar se a váriavel está declarada em maiusculo
+} else {
+    client.login(process.env.TOKEN).catch(error => {
+        console.error("Erro ao autenticar o bot: ", error)
+    });
+}
 
 // Debug
     client.on("error", (error) => {
