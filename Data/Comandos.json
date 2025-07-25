@@ -285,7 +285,7 @@
             "description": "Tutorial de como realizar a averbação de CT-e manualmente (passar para os clientes)"
         },
         "execute": "**Tutorial de como realizar a averbação de CT-e manualmente**\n```1 - Inicialmente o cliente precisa do loging, senha e o código ATM para acessar o site da averbadora\nSite: https://averba.com.br/\n2 - Acessando o site a cima e realizando o login, o cliente coloca o XML do CT-e\n3 - O site vai retornar o código da averbação\n4 - Pegar o código e anexar ao sistema.\n5 - Pronto, agora só realizar a emissão.```"
-    }
+    },
     {
     "id": 34,
     "data": {
